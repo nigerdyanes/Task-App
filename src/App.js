@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./containers/Home";
+import CreateTask from "./containers/CreateTask";
+import ListTask from "./containers/ListTask";
+import Layout from "./containers/Layout";
+import EditTask from "./containers/EditTask";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <Layout>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/create-task" component={CreateTask}/>
+            <Route exact path="/list-task" component={ListTask}/>
+            <Route exact path="/edit-task/:idTask" component={EditTask}/>
+          </Layout>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
